@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trimbkeshwar Jagtap - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --secondary: #1e40af;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --border: #e2e8f0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--light);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 5px solid white;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+            object-fit: cover;
+            background: white;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            margin-bottom: 1rem;
+        }
+
+        .hero .location {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .contact-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            background: rgba(255,255,255,0.2);
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .contact-links a:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 60px 0;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--dark);
+        }
+
+        /* About Section */
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .skill-category h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .skill-category ul {
+            list-style: none;
+        }
+
+        .skill-category li {
+            padding: 0.5rem 0;
+            color: var(--gray);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.4rem;
+        }
+
+        .project-tech {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .project-card ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .project-card li {
+            padding: 0.4rem 0;
+            color: var(--gray);
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .project-card li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+        }
+
+        /* Experience Section */
+        .experience-timeline {
+            max-width: 900px;
+            margin: 2rem auto;
+        }
+
+        .experience-item {
+            background: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border-left: 4px solid var(--primary);
+        }
+
+        .experience-header {
+            margin-bottom: 1rem;
+        }
+
+        .experience-header h3 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .experience-meta {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        .experience-item ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .experience-item li {
+            padding: 0.5rem 0;
+            color: var(--gray);
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .experience-item li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+
+        /* Education Section */
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .education-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .education-card h3 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-card .degree {
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .education-card .meta {
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            section h2 {
+                font-size: 2rem;
+            }
+
+            .projects-grid,
+            .education-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header>
+        <nav class="container">
+            <div class="logo">TJ</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#education">Education</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <img src="image.png" alt="Trimbkeshwar Jagtap" class="profile-img">
+                <div>
+                    <h1>Trimbkeshwar Jagtap</h1>
+                    <p class="subtitle">MS Information Systems Student | Data Analyst | Cloud/DevOps Engineer</p>
+                    <p class="location">📍 Boston, MA</p>
+                    <div class="contact-links">
+                        <a href="mailto:jagtap.t@northeastern.edu">✉️ Email</a>
+                        <a href="tel:8573398753">📱 (857) 339-8753</a>
+                        <a href="https://linkedin.com/in/trimbk-jagtap" target="_blank">💼 LinkedIn</a>
+                        <a href="https://github.com/Trimbkjagtap" target="_blank">💻 GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <p>MS Information Systems student at Northeastern University seeking co-op opportunities in Data Analysis, Business Analysis, and Cloud/DevOps Engineering. Previously worked as an IT Analyst at Shaurya Technsoft Pvt Ltd, where I gained hands-on experience with cloud infrastructure, data analysis, and business process optimization.</p>
+                <p style="margin-top: 1rem;">Passionate about leveraging technology to solve complex business problems through data-driven insights and scalable cloud solutions.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" style="background: white;">
+        <div class="container">
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Programming Languages</h3>
+                    <ul>
+                        <li>Python (Pandas, NumPy, Scikit-learn)</li>
+                        <li>SQL</li>
+                        <li>R</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Cloud Platforms</h3>
+                    <ul>
+                        <li>AWS (S3, CloudWatch, RDS, EC2, IAM)</li>
+                        <li>Google Cloud Platform</li>
+                        <li>Terraform</li>
+                        <li>Linux Scripting</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>BI & Visualization</h3>
+                    <ul>
+                        <li>Tableau</li>
+                        <li>Power BI</li>
+                        <li>Matplotlib & Seaborn</li>
+                        <li>Jupyter</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Databases</h3>
+                    <ul>
+                        <li>SQL Server</li>
+                        <li>PostgreSQL</li>
+                        <li>MySQL</li>
+                        <li>MongoDB</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>DevOps & Tools</h3>
+                    <ul>
+                        <li>CI/CD Pipelines</li>
+                        <li>Git & GitHub</li>
+                        <li>Packer</li>
+                        <li>Infrastructure as Code</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Business Skills</h3>
+                    <ul>
+                        <li>Business Process Engineering</li>
+                        <li>Requirements Gathering</li>
+                        <li>Process Modeling</li>
+                        <li>Stakeholder Collaboration</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2>Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3>Cloud-Native Web Application</h3>
+                        <p class="project-tech">Python, Flask, AWS S3, RDS, Packer, GitHub Actions</p>
+                        <ul>
+                            <li>Developed cloud-native web app handling 1,000+ concurrent users</li>
+                            <li>Automated AMI creation using Packer with systemd service</li>
+                            <li>Implemented CI/CD pipeline reducing manual intervention by 90%</li>
+                            <li>Integrated CloudWatch Agent for comprehensive monitoring</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3>Terraform Infrastructure Automation</h3>
+                        <p class="project-tech">Terraform, AWS VPC, EC2, IAM, S3, RDS</p>
+                        <ul>
+                            <li>Architected scalable AWS infrastructure with Terraform</li>
+                            <li>Reduced deployment time from 1 hour to 5 minutes</li>
+                            <li>Configured private RDS with encryption policies</li>
+                            <li>Implemented Auto Scaling Groups and load balancers</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3>Social Media Sentiment Analysis Pipeline</h3>
+                        <p class="project-tech">Python, ETL, Pandas, NLTK, MongoDB, Matplotlib</p>
+                        <ul>
+                            <li>Engineered automated ETL pipeline with Reddit API integration</li>
+                            <li>Implemented NLP with NLTK for sentiment scoring</li>
+                            <li>Loaded data into MongoDB for persistent storage</li>
+                            <li>Created visualizations for daily sentiment trends</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3>Forest Area Analysis</h3>
+                        <p class="project-tech">Python, Bayesian Regression, PyMC, NumPy, Matplotlib</p>
+                        <ul>
+                            <li>Analyzed forest area data across multiple countries</li>
+                            <li>Modeled relationships with GDP, population, urbanization</li>
+                            <li>Implemented Bayesian regression with PyMC</li>
+                            <li>Demonstrated higher forecasting accuracy vs traditional models</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3>Jewelry Ecosystem Management System</h3>
+                        <p class="project-tech">Business Analysis, Requirements Gathering, Visio</p>
+                        <ul>
+                            <li>Led requirements gathering with cross-functional stakeholders</li>
+                            <li>Authored functional specification documents and user stories</li>
+                            <li>Created process models for interdepartmental system</li>
+                            <li>Translated business needs into technical requirements</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" style="background: white;">
+        <div class="container">
+            <h2>Professional Experience</h2>
+            <div class="experience-timeline">
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <h3>IT Analyst</h3>
+                        <p class="experience-meta">Shaurya Technsoft Pvt Ltd | Pune, India | June 2023 - July 2024</p>
+                    </div>
+                    <ul>
+                        <li>Deployed and managed AWS infrastructure (EC2, RDS, S3) for RailSuraksha CDMS mobile app supporting 10,000+ users</li>
+                        <li>Implemented CloudWatch monitoring and custom dashboards, reducing incident response time by 35%</li>
+                        <li>Conducted AWS cost analysis achieving 20% reduction in monthly operational expenses</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <h3>IT Analyst Intern</h3>
+                        <p class="experience-meta">Shaurya Technsoft Pvt Ltd | Pune, India | January 2023 - June 2023</p>
+                    </div>
+                    <ul>
+                        <li>Developed ETL scripts in Python for AadiVanmitra government portal processing data from 500+ villages</li>
+                        <li>Configured and deployed Linux servers for development and staging environments</li>
+                        <li>Ensured data integrity for government compliance reporting through PostgreSQL loading</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <div class="container">
+            <h2>Education</h2>
+            <div class="education-grid">
+                <div class="education-card">
+                    <h3>Northeastern University</h3>
+                    <p class="degree">Master of Science in Information Systems</p>
+                    <p class="meta">Boston, MA | Expected December 2026</p>
+                    <p><strong>Relevant Courses:</strong> Application Engineering, Network Structures & Cloud Computing, Data Science Methods, Software Quality Control, Business Process Engineering, Program Structures & Algorithms</p>
+                </div>
+
+                <div class="education-card">
+                    <h3>Trinity College of Engineering</h3>
+                    <p class="degree">Bachelor of Engineering in Information Technology</p>
+                    <p class="meta">Pune, India | July 2023</p>
+                    <p><strong>Relevant Courses:</strong> Data Structures & Algorithms, Machine Learning, Database Management, DevOps, Data Science & Big Data Analytics, Computer Networks</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Trimbkeshwar Jagtap. All rights reserved.</p>
+            <p style="margin-top: 0.5rem;">Built with HTML & CSS | Hosted on GitHub Pages</p>
+        </div>
+    </footer>
+</body>
+</html>
